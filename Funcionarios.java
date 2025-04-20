@@ -1,4 +1,5 @@
 public class Funcionarios extends Pessoa{
+    //declaração de variáveis
     private String nome;
     private float salario;
     private String departamento;
@@ -32,12 +33,14 @@ public class Funcionarios extends Pessoa{
 
     //MÉTODOS
     public void MostrarDados(){
-        System.out.println("Nome: " + GetNome() + "\nSalário: "+ GetSalario() + "\nDepartamento: "+ GetDepartamento() + "CPF: " + GetCPF() + "Data de nascimento: "+ GetDataDeNascimento());
+        System.out.println("Nome: " + GetNome() + "\nSalário: "+ GetSalario() + "\nDepartamento: "+ GetDepartamento() + "\nCPF: " + GetCPF() + "\nData de nascimento: "+ GetDataDeNascimento());
     }
 
     public void BaterPonto(){
         if (BateuPonto % 2 == 0) {
             System.out.println("O funcionário entrou para trabalhar.");
+        } else {
+            System.out.println("O funcionário saiu do trabalho.");
         }
         BateuPonto = BateuPonto + 1;
     }

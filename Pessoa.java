@@ -1,9 +1,9 @@
 public class Pessoa {
-    private int CPF;
+    private String CPF;
     private String DataDeNascimento;
 
     //SETTER
-    public void SetCPF (int CPF){
+    public void SetCPF (String CPF){
         this.CPF = CPF;
     }
 
@@ -16,7 +16,7 @@ public class Pessoa {
         return DataDeNascimento;
     }
 
-    public int GetCPF(){
+    public String GetCPF(){
         return CPF;
     }
 }

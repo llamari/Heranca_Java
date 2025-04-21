@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Funcionarios extends Pessoa{
     //declaração de variáveis
     private String nome;
@@ -37,10 +40,14 @@ public class Funcionarios extends Pessoa{
     }
 
     public void BaterPonto(){
+        LocalDateTime agora = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String horaFormatada = agora.format(formatter);
+
         if (BateuPonto % 2 == 0) {
-            System.out.println("O funcionário entrou para trabalhar.");
+            System.out.println("\u001B[33m"+"O funcionário entrou para trabalhar em: "+horaFormatada+"\u001B[0m");
         } else {
-            System.out.println("O funcionário saiu do trabalho.");
+            System.out.println("\u001B[33m"+"O funcionário saiu do trabalho em: "+ horaFormatada+"\u001B[0m");
         }
         BateuPonto = BateuPonto + 1;
     }

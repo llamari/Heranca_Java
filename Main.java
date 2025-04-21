@@ -9,33 +9,58 @@ public class Main {
     public static void main(String[] args) {
         // declaração de variáveis
         int escolha = 1;
+        int cargo;
         Scanner teclado = new Scanner(System.in);
 
         do {
             System.out.println(
-                    "1 - Cadastrar um novo funcionário\n2 - Exibição de dados de um funcionários em específico\n3 - Exibição de dados de funcionários de determinado cargo\n0 - Sair\nInsira a opção desejada: ");
+                    "1 - Cadastrar um novo funcionário\n2 - Exibição de dados de um funcionários em específico\n3 - Exibição de dados de funcionários de determinado cargo\n4 - Bater ponto\n0 - Sair\nInsira a opção desejada: ");
             escolha = teclado.nextInt();
             teclado.nextLine();
 
             switch (escolha) {
                 case 1:
                     System.out.println(
-                            "1 - Gerente\n2 - Desenvolvedor\n3 - Estagiário\nQual será o cargo do funcionário cadastrado:");
-                    int cargo = teclado.nextInt();
+                            "\u001B[36m"+"1 - Gerente\n2 - Desenvolvedor\n3 - Estagiário\n"+"\u001B[0m"+"Qual será o cargo do funcionário cadastrado:");
+                    cargo = teclado.nextInt();
                     teclado.nextLine();
                     cadastraFuncionario(cargo, teclado);
                     break;
 
                 case 2:
                     System.out.println(
-                            "1 - Gerente\n2 - Desenvolvedor\n3 - Estagiário\nQual será o cargo do funcionário desejado:");
-                    int cargo1 = teclado.nextInt();
+                            "\u001B[36m"+"1 - Gerente\n2 - Desenvolvedor\n3 - Estagiário\n"+"\u001B[0m"+"Qual será o cargo do funcionário desejado:");
+                    cargo = teclado.nextInt();
                     teclado.nextLine();
                     System.out.println("Qual o nome do funcionário desejado:");
                     String nome = teclado.nextLine();
-                    mostraFuncionario(cargo1, nome);
+                    mostraFuncionario(cargo, nome);
                     break;
+
+                case 3:
+                System.out.println(
+                    "\u001B[36m"+"1 - Gerente\n2 - Desenvolvedor\n3 - Estagiário\n"+ "\u001B[0m" + "Qual será o cargo desejado:");
+                    cargo = teclado.nextInt();
+                    teclado.nextLine();
+                    mostraFuncionarios(cargo, teclado);
+                    break;
+
+                case 4:
+                    System.out.println(
+                        "\u001B[36m"+"1 - Gerente\n2 - Desenvolvedor\n3 - Estagiário\n"+"\u001B[0m"+"Qual é o cargo do funcionário:");
+                    cargo = teclado.nextInt();
+                    teclado.nextLine();
+                    System.out.println("Qual é o nome do funcionário:");
+                    String nome1 = teclado.nextLine();
+                    baterPonto(cargo, nome1);
+                    break;
+                
+                case 0:
+                    System.out.println("\u001B[31m"+ "Saindo..."+ "\u001B[0m");
+                    break;
+
                 default:
+                    System.out.println("\u001B[31m"+"A opção inserida não está entre as alternativas."+"\u001B[0m");
                     break;
             }
         } while (escolha != 0);
@@ -85,7 +110,7 @@ public class Main {
                 }
                 break;
             case 2:
-                for (int i = 0; i < estagiarios.size(); i++) {
+                for (int i = 0; i < desenvolvedores.size(); i++) {
                     Desenvolvedor desenvolvedorAtual = desenvolvedores.get(i);
                     if (desenvolvedorAtual.GetNome().equals(nome)) {
                         desenvolvedorAtual.MostrarDados();
@@ -102,6 +127,71 @@ public class Main {
                 break;
 
             default:
+                System.out.println("Cargo inválido.");
+                break;
+        }
+    }
+
+    public static void mostraFuncionarios(int cargo, Scanner teclado){
+        switch (cargo) {
+            case 1:
+                for (int i = 0; i < gerentes.size(); i++) {
+                    Gerente gerenteAtual = gerentes.get(i);
+                    System.out.println("\u001B[33m"+(i+1) + "º gerente :"+"\u001B[0m");
+                    gerenteAtual.MostrarDados();
+                }
+                break;
+            case 2:
+                for (int i = 0; i < desenvolvedores.size(); i++) {
+                    Desenvolvedor desenvolvedorAtual = desenvolvedores.get(i);
+                    System.out.println("\u001B[33m"+(i+1) + "º desenvolvedor :"+"\u001B[0m");
+                    desenvolvedorAtual.MostrarDados();
+                }
+                break;
+        
+            case 3:
+                for (int i = 0; i < estagiarios.size(); i++) {
+                    Estagiario estagiarioAtual = estagiarios.get(i);
+                    System.out.println("\u001B[33m"+(i+1) + "º estagiário :"+"\u001B[0m");
+                    estagiarioAtual.MostrarDados();
+                }
+                break;
+        
+            default:
+                System.out.println("Cargo inválido.");
+                break;
+        }
+    }
+
+    public static void baterPonto(int cargo, String nome){
+        switch (cargo) {
+            case 1:
+                for (int i = 0; i < gerentes.size(); i++) {
+                    Gerente gerenteAtual = gerentes.get(i);
+                    if (gerenteAtual.GetNome().equals(nome)) {
+                        gerenteAtual.BaterPonto();
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < desenvolvedores.size(); i++) {
+                    Desenvolvedor desenvolvedorAtual = desenvolvedores.get(i);
+                    if (desenvolvedorAtual.GetNome().equals(nome)) {
+                        desenvolvedorAtual.BaterPonto();
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < estagiarios.size(); i++) {
+                    Estagiario estagiarioAtual = estagiarios.get(i);
+                    if (estagiarioAtual.GetNome().equals(nome)) {
+                        estagiarioAtual.BaterPonto();
+                    }
+                }
+                break;
+
+            default:
+                System.out.println("Cargo inválido.");
                 break;
         }
     }

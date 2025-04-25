@@ -14,7 +14,7 @@ public class Main {
 
         do {
             System.out.println(
-                    "1 - Cadastrar um novo funcionário\n2 - Exibição de dados de um funcionários em específico\n3 - Exibição de dados de funcionários de determinado cargo\n4 - Bater ponto\n0 - Sair\nInsira a opção desejada: ");
+                    "1 - Cadastrar um novo funcionário\n2 - Exibição de dados de um funcionários em específico\n3 - Exibição de dados de funcionários de determinado cargo\n4 - Bater ponto\n5 - Fazer função do cargo\n0 - Sair\nInsira a opção desejada: ");
             escolha = teclado.nextInt();
             teclado.nextLine();
 
@@ -54,7 +54,17 @@ public class Main {
                     String nome1 = teclado.nextLine();
                     baterPonto(cargo, nome1);
                     break;
-                
+
+                case 5:
+                    System.out.println(
+                        "\u001B[36m"+"1 - Gerente\n2 - Desenvolvedor\n3 - Estagiário\n"+"\u001B[0m"+"Qual é o cargo do funcionário que irá fazer a função:");
+                    cargo = teclado.nextInt();
+                    teclado.nextLine();
+                    System.out.println("Qual é o nome do funcionário:");
+                    String nome2 = teclado.nextLine();
+                    funcaoEspecifica(cargo, nome2);
+                    break;
+            
                 case 0:
                     System.out.println("\u001B[31m"+ "Saindo..."+ "\u001B[0m");
                     break;
@@ -186,6 +196,39 @@ public class Main {
                     Estagiario estagiarioAtual = estagiarios.get(i);
                     if (estagiarioAtual.GetNome().equals(nome)) {
                         estagiarioAtual.BaterPonto();
+                    }
+                }
+                break;
+
+            default:
+                System.out.println("Cargo inválido.");
+                break;
+        }
+    }
+
+    public static void funcaoEspecifica(int cargo, String nome){
+        switch (cargo) {
+            case 1:
+                for (int i = 0; i < gerentes.size(); i++) {
+                    Gerente gerenteAtual = gerentes.get(i);
+                    if (gerenteAtual.GetNome().equals(nome)) {
+                        gerenteAtual.realizarReuniao();
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < desenvolvedores.size(); i++) {
+                    Desenvolvedor desenvolvedorAtual = desenvolvedores.get(i);
+                    if (desenvolvedorAtual.GetNome().equals(nome)) {
+                        desenvolvedorAtual.programar();
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < estagiarios.size(); i++) {
+                    Estagiario estagiarioAtual = estagiarios.get(i);
+                    if (estagiarioAtual.GetNome().equals(nome)) {
+                        estagiarioAtual.fazerTarefa();
                     }
                 }
                 break;

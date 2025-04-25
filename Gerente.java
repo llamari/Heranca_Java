@@ -9,7 +9,7 @@ public class Gerente extends Funcionarios {
     }
 
     public void realizarReuniao(){
-        System.out.println("O gerente está realizando uma reuniãoS");
+        System.out.println("O gerente está realizando uma reunião");
     }   
 
     public void MostrarDados(){

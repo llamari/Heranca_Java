@@ -25,6 +25,3 @@ javac *.java
 ```bash
 java Main
 ```
-
-## Vídeo
-[Link para o vídeo explicando o código e mostrando o funcionamento do sistema](https://youtu.be/P_bX3FObeqg)
